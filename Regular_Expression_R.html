@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Hedia Tnani">
+
+<title>Regular Expression in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="Regular_Expression_R_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Regular_Expression_R_files/libs/quarto-html/quarto.js"></script>
+<script src="Regular_Expression_R_files/libs/quarto-html/popper.min.js"></script>
+<script src="Regular_Expression_R_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Regular_Expression_R_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Regular_Expression_R_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Regular_Expression_R_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Regular_Expression_R_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Regular_Expression_R_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Regular_Expression_R_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Regular Expression in R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Hedia Tnani </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="regular-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="regular-expressions">Regular Expressions</h2>
+</section>
+<section id="what-are-regular-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-regular-expressions"><strong>What are Regular Expressions?</strong></h2>
+<p>Regular expressions (<code>regex</code> or <code>regexp</code>) are patterns used to match and manipulate text data. They are widely used in text processing and are supported by many programming languages, including R.</p>
+<p>Regex patterns consist of a combination of letters, digits, and special characters that define the search criteria. The basic idea is to describe a set of strings using a concise and flexible syntax. For example, you could use a regex pattern to search for all email addresses in a text file or to extract all dates from a web page.</p>
+<p>Regular expressions are extremly useful to help clean data and parse strings. They are very helpful in bioinformatics.</p>
+</section>
+<section id="playing-with-regex" class="level2">
+<h2 class="anchored" data-anchor-id="playing-with-regex">Playing with regex</h2>
+<section id="the-grep-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-grep-function"><strong>The <code>grep</code> Function</strong></h3>
+<p>The <strong><code>grep</code></strong> function in base R is used to search for patterns in a character vector and returns the indices of the elements that contain the pattern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a character vector</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"bioinformatics"</span>, <span class="st">"mathematics"</span>, <span class="st">"biology"</span>, <span class="st">"chemistry"</span>, <span class="st">"computer science"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># search for all elements that contain the letter "a"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"a"</span>, words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2</code></pre>
+</div>
+</div>
+<p>In this example, the <strong><code>grep</code></strong> function searches for all elements in the <strong><code>words</code></strong> vector that contain the letter “a” and returns the indices of the matching elements.</p>
+</section>
+<section id="sub-and-gsub-functions" class="level3">
+<h3 class="anchored" data-anchor-id="sub-and-gsub-functions"><strong><code>sub</code> and <code>gsub</code> Functions</strong></h3>
+<p>The <strong><code>sub</code></strong> and <strong><code>gsub</code></strong> functions are used to replace a pattern in a string with another pattern. The <strong><code>sub</code></strong> function replaces the first occurrence of the pattern, while the <strong><code>gsub</code></strong> function replaces all occurrences of the pattern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a character vector</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"Mathematics is very difficult sometimes. Mathematics is not easy for biologists to understand"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># replace the word "Mathematics" with "Bioinformatics"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sub</span>(<span class="st">"Mathematics"</span>, <span class="st">"Bioinformatics"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Bioinformatics is very difficult sometimes. Mathematics is not easy for biologists to understand"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace all occurrences of the word "is" with "IS"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gsub</span>(<span class="st">"is"</span>, <span class="st">"IS"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mathematics IS very difficult sometimes. Mathematics IS not easy for biologISts to understand"</code></pre>
+</div>
+</div>
+<p>In the example above, the <strong><code>sub</code></strong> function replaces the <strong>first</strong> occurrence of the word “Mathematics” with “Bioinformatics” in the <strong><code>text</code></strong> vector. In the second example, the <strong><code>gsub</code></strong> function replaces all occurrences of the word “is” with “IS” in the <strong><code>text</code></strong> vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># search for all elements that contain "Mathematics" or "biologISts"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"(Mathematics|biologISts)"</span>, text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</section>
+<section id="the-str_subset-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-str_subset-function">The <code>str_subset</code> function</h3>
+<p><code>str_subset()</code> from the <code>stringr</code> package returns all elements of <code>string</code> where there’s at least one match to <code>pattern</code>. It’s a wrapper around <code>x[str_detect(x, pattern)]</code>, and is equivalent to <code>grep(pattern, x, value = TRUE).</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'stringr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked _by_ '.GlobalEnv':
+
+    words</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(text, <span class="st">"(Mathematics|biologISts)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mathematics is very difficult sometimes. Mathematics is not easy for biologists to understand"</code></pre>
+</div>
+</div>
+<p>Let’s get the <code>words</code> starting with <code>b</code> from the previous <code>words</code> object. <strong><code>"^b"</code></strong> is a regular expression pattern that matches any string that starts with “b”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(words, <span class="st">"^b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bioinformatics" "biology"       </code></pre>
+</div>
+</div>
+<p>When you call <strong><code>str_subset(words, "^b")</code></strong>, the function searches each string in <strong><code>words</code></strong> for the pattern <strong><code>"^b"</code></strong>, and returns only the strings that start with “b”. The result is a new character vector that includes only the matching strings.</p>
+<p>Let’s get the <code>words</code> ending with <code>s</code> from the previous <code>words</code> object. <strong><code>"s$"</code></strong> is a regular expression pattern that matches any string that ends with “s”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(words, <span class="st">"s$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bioinformatics" "mathematics"   </code></pre>
+</div>
+</div>
+<p>When you call <strong><code>str_subset(words, "s$")</code></strong>, the function searches each string in <strong><code>words</code></strong> for the pattern <strong><code>"s$"</code></strong>, and returns only the strings that end with “s”. The result is a new character vector that includes only the matching strings.</p>
+<p>Let’s get the <code>words</code> that matches either “c” or “s”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(words, <span class="st">"[cs]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bioinformatics"   "mathematics"      "chemistry"        "computer science"</code></pre>
+</div>
+</div>
+<p><strong><code>str_subset(words, "[cs]")</code></strong> will return all strings in <strong><code>words</code></strong> that contain either “c” or “s”.</p>
+</section>
+<section id="the-gregexpr-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-gregexpr-function">The <strong><code>gregexpr()</code></strong> function</h3>
+<p><strong><code>gregexpr()</code></strong> is a base R function that searches for matches of a regular expression in a character string and returns the position of the matches. It can be used to find all occurrences of a pattern in a string, even if there are multiple matches.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Biostrings)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DNAStringSet object</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>dna_strings <span class="ot">&lt;-</span> <span class="fu">DNAStringSet</span>(<span class="fu">c</span>(<span class="st">"ACGTAGTTCAAGTACAGATCGGGGGCTAGCCCCCTAGCTAGCT"</span>, <span class="st">"ACGTATTTTGTACAGATAAAACGCTAGCTAGCTAGCTAGATCGGGGGC"</span>))</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set names for the sequences</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dna_strings) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Sequence1"</span>, <span class="st">"Sequence2"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>dna_strings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>DNAStringSet object of length 2:
+    width seq                                               names               
+[1]    43 ACGTAGTTCAAGTACAGATCGGGGGCTAGCCCCCTAGCTAGCT       Sequence1
+[2]    48 ACGTATTTTGTACAGATAAAACGCTAGCTAGCTAGCTAGATCGGGGGC  Sequence2</code></pre>
+</div>
+</div>
+<p><strong><code>gregexpr</code></strong> finds all matches for the regular expression “TA” in each of the sequences.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use gregexpr to find matches for a regular expression in the DNAStringSet</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>matches <span class="ot">&lt;-</span> <span class="fu">gregexpr</span>(<span class="st">"TA"</span>, dna_strings)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>matches</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1]  4 13 27 35 39
+attr(,"match.length")
+[1] 2 2 2 2 2
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+
+[[2]]
+[1]  4 11 17 25 29 33 37
+attr(,"match.length")
+[1] 2 2 2 2 2 2 2
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE</code></pre>
+</div>
+</div>
+<p>The output of <strong><code>gregexpr</code></strong> is a list where each element corresponds to one of the input sequences. For each sequence, <strong><code>gregexpr</code></strong> returns a vector of the positions where matches were found, along with the length of each match. If no matches were found for a sequence, <strong><code>gregexpr</code></strong> returns an empty integer vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the position of the pattern "GGGGG" using base R</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unlist</span>(<span class="fu">gregexpr</span>(<span class="st">"G{5}"</span>, dna_strings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21 43</code></pre>
+</div>
+</div>
+<p>You can use the <strong><code>regmatches()</code></strong> function along with <strong><code>gregexpr()</code></strong> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use gregexpr and regmatches to extract matched sequences</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>matched_seqs <span class="ot">&lt;-</span> <span class="fu">regmatches</span>(dna_strings, <span class="fu">gregexpr</span>(<span class="st">"G{5}"</span>, dna_strings))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View the matched sequences</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>matched_seqs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Sequence1
+[1] "GGGGG"
+
+$Sequence2
+[1] "GGGGG"</code></pre>
+</div>
+</div>
+<p>The <strong><code>gregexpr()</code></strong> function is used to identify the positions of the matches, and <strong><code>regmatches()</code></strong> is used to extract the matched sequences based on those positions. The resulting object is a list where each element corresponds to the matched sequence(s) for a sequence in the <strong><code>DNAStringSet</code></strong>.</p>
+</section>
+</section>
+<section id="use-case-schizophrenia" class="level2">
+<h2 class="anchored" data-anchor-id="use-case-schizophrenia">Use case: SCHIZOPHRENIA</h2>
+<p>In this tutorial, we will explore how to use regular expressions in R using base R and tidyverse packages to analyze data from the <code>rentrez</code> package on schizophrenia.</p>
+</section>
+<section id="getting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-data"><strong>Getting the Data</strong></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install and load rentrez package</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("rentrez")</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># search for articles related to schizophrenia</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>schizo_search <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db=</span><span class="st">"pubmed"</span>, <span class="at">term=</span><span class="st">"schizophrenia"</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get the ids for the top 20 articles</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>schizo_ids <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db=</span><span class="st">"pubmed"</span>, <span class="at">id=</span>schizo_search<span class="sc">$</span>ids[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], <span class="at">rettype=</span><span class="st">"xml"</span>, <span class="at">parsed =</span> T)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(schizo_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "XMLInternalDocument" "XMLAbstractDocument"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>schizo_list <span class="ot">&lt;-</span> XML<span class="sc">::</span><span class="fu">xmlToList</span>(schizo_ids)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#schizo_list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>schizo_list[[<span class="dv">1</span>]]<span class="sc">$</span>MedlineCitation<span class="sc">$</span>Article<span class="sc">$</span>ArticleTitle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Successful switching from risperidone to cariprazine in a schizophrenic patient with pronounced functional deficit. Case report."</code></pre>
+</div>
+</div>
+<p><strong><code>schizo_list</code></strong> is a list of nested objects containing MedlineCitation information, you can use <strong><code>map</code></strong> from the <strong><code>purrr</code></strong> package to extract all the ArticleTitles from each nested list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'purrr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:XVector':
+
+    compact</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:IRanges':
+
+    reduce</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use map with .x to extract the ArticleTitle from each nested list</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>titles <span class="ot">&lt;-</span> <span class="fu">map</span>(schizo_list, <span class="sc">~</span> .x<span class="sc">$</span>MedlineCitation<span class="sc">$</span>Article<span class="sc">$</span>ArticleTitle)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$PubmedArticle
+[1] "Successful switching from risperidone to cariprazine in a schizophrenic patient with pronounced functional deficit. Case report."
+
+$PubmedArticle
+[1] "Application of machine learning in predicting aggressive behaviors from hospitalized patients with schizophrenia."
+
+$PubmedArticle
+[1] "The role of the salience network in cognitive and affective deficits."
+
+$PubmedArticle
+[1] "Amygdala signal abnormality and cognitive impairment in drug-naïve schizophrenia."
+
+$PubmedArticle
+[1] "Comorbid psychiatric disorders and long-term survival after liver transplantation in transplant facilities with a psychiatric consultation-liaison team: a multicenter retrospective study."
+
+$PubmedArticle
+[1] "Polygenetic risk scores and phenotypic constellations of obsessive-compulsive disorder in clozapine-treated schizophrenia."
+
+$PubmedArticle
+[1] "Activation of Internal Correctness Monitoring Circuitry in Youths With Psychosis Spectrum Symptoms."
+
+$PubmedArticle
+[1] "Olanzapine-induced nonalcoholic fatty liver disease: The effects of differential food pattern and the involvement of PGRMC1 signaling."
+
+$PubmedArticle
+[1] "Bioconversion and P-gp-mediated transport of depot fluphenazine prodrugs after intramuscular injection."
+
+$PubmedArticle
+[1] "Expression of the primate-specific LINC00473 RNA in mouse neurons promotes excitability and CREB-regulated transcription."
+
+$PubmedArticle
+[1] "Prospective, randomized, multicenter clinical trial evaluating longitudinal changes in brain function and microstructure in first-episode schizophrenia patients treated with long-acting injectable paliperidone palmitate versus oral antipsychotics."
+
+$PubmedArticle
+[1] "Variation in self and familiar facial recognition in bipolar disorder patients at different clinical stages."
+
+$PubmedArticle
+[1] "[Classifying the women: psychiatric diagnoses and female subjectivity in the Manicomio Provincial de Málaga, Spain, 1909-1950]."
+
+$PubmedArticle
+[1] "Multi-Graph Attention Networks with Bilinear Convolution for Diagnosis of Schizophrenia."
+
+$PubmedArticle
+[1] "Aberrant Brain Dynamics in Schizophrenia During Working Memory Task: Evidence From a Replication Functional MRI Study."
+
+$PubmedArticle
+[1] "Association of Medication Nonadherence With Increased Risk of Violence to Others Among Patients With Schizophrenia."
+
+$PubmedArticle
+[1] "Medication Nonadherence and Risk of Violence to Others Among Patients With Schizophrenia in Western China."
+
+$PubmedArticle
+[1] "Assessment of Neuroanatomical Endophenotypes of Autism Spectrum Disorder and Association With Characteristics of Individuals With Schizophrenia and the General Population."
+
+$PubmedArticle
+[1] "Genome-wide DNA Methylation Analysis in Families with Multiple Individuals Diagnosed with Schizophrenia and Intellectual Disability."
+
+$PubmedArticle
+[1] "Community-Based Service Use After Clozapine Treatment: A Mirror-Image Analysis of Public Claims Data."</code></pre>
+</div>
+</div>
+</section>
+<section id="using-regular-expression" class="level2">
+<h2 class="anchored" data-anchor-id="using-regular-expression">Using regular expression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find the indices of titles that contain the word "schizophrenia"</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"schizophrenia"</span>, titles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  4  6 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find the indices of titles that contain the words "schizophrenia" or "psychosis"</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"schizophrenia|psychosis"</span>, titles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  4  6 11</code></pre>
+</div>
+</div>
+<p>Let’s subset the <code>titles</code> object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find the titles that contain the word "schizophrenia"</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>titles[<span class="fu">grep</span>(<span class="st">"schizophrenia"</span>, titles)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$PubmedArticle
+[1] "Application of machine learning in predicting aggressive behaviors from hospitalized patients with schizophrenia."
+
+$PubmedArticle
+[1] "Amygdala signal abnormality and cognitive impairment in drug-naïve schizophrenia."
+
+$PubmedArticle
+[1] "Polygenetic risk scores and phenotypic constellations of obsessive-compulsive disorder in clozapine-treated schizophrenia."
+
+$PubmedArticle
+[1] "Prospective, randomized, multicenter clinical trial evaluating longitudinal changes in brain function and microstructure in first-episode schizophrenia patients treated with long-acting injectable paliperidone palmitate versus oral antipsychotics."</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find the titles that contain the words "schizophrenia" or "psychosis"</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>titles[<span class="fu">grep</span>(<span class="st">"schizophrenia|psychosis"</span>, titles)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$PubmedArticle
+[1] "Application of machine learning in predicting aggressive behaviors from hospitalized patients with schizophrenia."
+
+$PubmedArticle
+[1] "Amygdala signal abnormality and cognitive impairment in drug-naïve schizophrenia."
+
+$PubmedArticle
+[1] "Polygenetic risk scores and phenotypic constellations of obsessive-compulsive disorder in clozapine-treated schizophrenia."
+
+$PubmedArticle
+[1] "Prospective, randomized, multicenter clinical trial evaluating longitudinal changes in brain function and microstructure in first-episode schizophrenia patients treated with long-acting injectable paliperidone palmitate versus oral antipsychotics."</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Search for articles on "schizophrenia" that mention "antipsychotic" in the title</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>search <span class="ot">&lt;-</span> <span class="st">"schizophrenia AND antipsychotic[TIAB]"</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>abstracts <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db =</span> <span class="st">"pubmed"</span>, <span class="at">term =</span> search, <span class="at">retmax =</span> <span class="dv">10</span>)<span class="sc">$</span>ids</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>schizoAntipsy <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db =</span> <span class="st">"pubmed"</span>, <span class="at">id =</span> abstracts, <span class="at">rettype =</span> <span class="st">"xml"</span>, <span class="at">parsed =</span> T) </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>schizoAntipsy_list <span class="ot">&lt;-</span> XML<span class="sc">::</span><span class="fu">xmlToList</span>(schizoAntipsy)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>titles <span class="ot">&lt;-</span> <span class="fu">map</span>(schizoAntipsy_list, <span class="sc">~</span> .x<span class="sc">$</span>MedlineCitation<span class="sc">$</span>Article<span class="sc">$</span>ArticleTitle)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$PubmedArticle
+[1] "Successful switching from risperidone to cariprazine in a schizophrenic patient with pronounced functional deficit. Case report."
+
+$PubmedArticle
+[1] "Olanzapine-induced nonalcoholic fatty liver disease: The effects of differential food pattern and the involvement of PGRMC1 signaling."
+
+$PubmedArticle
+[1] "Prospective, randomized, multicenter clinical trial evaluating longitudinal changes in brain function and microstructure in first-episode schizophrenia patients treated with long-acting injectable paliperidone palmitate versus oral antipsychotics."
+
+$PubmedArticle
+[1] "Assessment of Neuroanatomical Endophenotypes of Autism Spectrum Disorder and Association With Characteristics of Individuals With Schizophrenia and the General Population."
+
+$PubmedArticle
+[1] "Antipsychotic treatment patterns in refugees and their Swedish-born peers with first-episode non-affective psychosis: findings from the REMAIN study."
+
+$PubmedArticle
+[1] "Fibre density and fibre-bundle cross-section of the corticospinal tract are distinctly linked to psychosis-specific symptoms in antipsychotic-naïve patients with first-episode schizophrenia."
+
+$PubmedArticle
+[1] "Brain Structure Measurements Predict Individualized Treatment Outcome of 12-Week Antipsychotic Monotherapies in First-episode Schizophrenia."
+
+$PubmedArticle
+[1] "Reward disturbances in antipsychotic-naïve patients with first-episode psychosis and their association to glutamate levels."
+
+$PubmedArticle
+[1] "Striatum-related spontaneous coactivation patterns predict treatment response on positive symptoms of drug-naive first-episode schizophrenia with risperidone monotherapy."
+
+$PubmedArticle
+[1] "Verbal and visual learning ability in patients with treatment-resistant schizophrenia: A 1-year follow-up study."</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace the word "schizophrenia" with "SZ" in each title</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(titles, <span class="st">"(s|S)chizophrenia"</span>, <span class="st">"SZ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Successful switching from risperidone to cariprazine in a schizophrenic patient with pronounced functional deficit. Case report."                                                                                                            
+ [2] "Olanzapine-induced nonalcoholic fatty liver disease: The effects of differential food pattern and the involvement of PGRMC1 signaling."                                                                                                      
+ [3] "Prospective, randomized, multicenter clinical trial evaluating longitudinal changes in brain function and microstructure in first-episode SZ patients treated with long-acting injectable paliperidone palmitate versus oral antipsychotics."
+ [4] "Assessment of Neuroanatomical Endophenotypes of Autism Spectrum Disorder and Association With Characteristics of Individuals With SZ and the General Population."                                                                            
+ [5] "Antipsychotic treatment patterns in refugees and their Swedish-born peers with first-episode non-affective psychosis: findings from the REMAIN study."                                                                                       
+ [6] "Fibre density and fibre-bundle cross-section of the corticospinal tract are distinctly linked to psychosis-specific symptoms in antipsychotic-naïve patients with first-episode SZ."                                                         
+ [7] "Brain Structure Measurements Predict Individualized Treatment Outcome of 12-Week Antipsychotic Monotherapies in First-episode SZ."                                                                                                           
+ [8] "Reward disturbances in antipsychotic-naïve patients with first-episode psychosis and their association to glutamate levels."                                                                                                                 
+ [9] "Striatum-related spontaneous coactivation patterns predict treatment response on positive symptoms of drug-naive first-episode SZ with risperidone monotherapy."                                                                             
+[10] "Verbal and visual learning ability in patients with treatment-resistant SZ: A 1-year follow-up study."                                                                                                                                       </code></pre>
+</div>
+</div>
+<p>In this example, we use the <strong><code>str_replace</code></strong> function from <strong><code>stringr</code></strong> to replace the word “schizophrenia” or “Schizophrenia” with “SZ” in each title in the <strong><code>titles</code></strong> vector.</p>
+<section id="the-str_extract-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-str_extract-function"><strong>The <code>str_extract</code> Function</strong></h3>
+<p><strong><code>str_extract()</code></strong> function extracts substrings that match the regular expression pattern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the first word of each title</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(titles, <span class="st">"</span><span class="sc">\\</span><span class="st">w+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Successful"    "Olanzapine"    "Prospective"   "Assessment"   
+ [5] "Antipsychotic" "Fibre"         "Brain"         "Reward"       
+ [9] "Striatum"      "Verbal"       </code></pre>
+</div>
+</div>
+<p>When typing regular expressions, there are a group of special characters called metacharacters that have other functions. These are <code>.{()\^$|?*+</code> .</p>
+<p>The backslash is <strong><em>SUPER</em></strong> important because if we want to search for any of these characters without using their built in function we must escape the character with a backslash.</p>
+<p>The backslash is a metacharacter too! So to create a backslash for the function to search with, we need to escape the backslash!</p>
+<p>Let´s extract the first digit (0-9) that appears in each element of the <strong><code>titles</code></strong> character vector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the first digit of each title</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(titles, <span class="st">"[:digit:]{1}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA  "1" NA  NA  NA  NA  "1" NA  NA  "1"</code></pre>
+</div>
+</div>
+<p>The code <strong><code>str_extract(titles, "[:digit:]{1}")</code></strong> extracts the first digit (0-9) that appears in each element of the <strong><code>titles</code></strong> character vector using the <strong><code>str_extract()</code></strong> function from the <strong><code>stringr</code></strong> package.</p>
+<p>The regular expression <strong><code>[:digit:]{1}</code></strong> matches a single digit character. The curly braces <strong><code>{1}</code></strong> indicate that we want to match exactly one digit character, and the square brackets <strong><code>[]</code></strong> are used to define a character class. The <strong><code>[:digit:]</code></strong> character class matches any digit character.</p>
+<p>Thus, <strong><code>str_extract(titles, "[:digit:]{1}")</code></strong> will return a vector of the first digit character found in each element of the <strong><code>titles</code></strong> vector. If an element does not contain any digit characters, the result will be an empty string for that element.</p>
+</section>
+</section>
+<section id="use-case-covid-19-and-sars-cov-2" class="level2">
+<h2 class="anchored" data-anchor-id="use-case-covid-19-and-sars-cov-2">Use case: Covid 19 and SARS-CoV-2</h2>
+<p>In January 2020, scientists deciphered the genome of the <code>SARS-CoV-2</code> virus, which causes <code>Covid-19</code>. The sample came from a 41-year-old man who worked at the Wuhan seafood market, where the first group of cases appeared.</p>
+<p>Researchers are now striving to make sense of this viral recipe, which could inspire drugs, vaccines, and other tools to fight the current pandemic.</p>
+<p>As bioinformaticians, we want to study the different genomes and proteomes of <code>SARS-CoV-2</code>, which causes <code>Covid-19</code>.</p>
+<p>SARS-CoV-2 The genome of the new coronavirus is a sequence of 30,000 base pairs. (The human genome has more than 3 billion). Scientists have identified the genes for no less than 29 proteins, which perform a whole range of tasks from making copies of the coronavirus to suppressing the body’s immune responses.</p>
+<p><img src="https://static01.nyt.com/newsgraphics/2020/04/02/virus-genome/assets/images/coronavirus-cutaway-600.png" class="img-fluid" width="300"></p>
+<p><a href="https://static01.nyt.com/newsgraphics/2020/04/02/virus-genome/assets/images/coronavirus-cutaway-600.png">Source</a></p>
+<p>With the availability of the COVID-19 genome publicly available on the National Center for Biotechnology Information (NCBI) website, we are interested in exploring the genome of SARS-CoV-2 in the first place. Let’s start by installing the library we will use to search the NCBI database.</p>
+</section>
+<section id="getting-the-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-data-1">Getting the data</h2>
+<p>First, you can use <code>entrez_dbs()</code> to find the list of available databases:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">entrez_dbs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "pubmed"          "protein"         "nuccore"         "ipg"            
+ [5] "nucleotide"      "structure"       "genome"          "annotinfo"      
+ [9] "assembly"        "bioproject"      "biosample"       "blastdbinfo"    
+[13] "books"           "cdd"             "clinvar"         "gap"            
+[17] "gapplus"         "grasp"           "dbvar"           "gene"           
+[21] "gds"             "geoprofiles"     "homologene"      "medgen"         
+[25] "mesh"            "nlmcatalog"      "omim"            "orgtrack"       
+[29] "pmc"             "popset"          "proteinclusters" "pcassay"        
+[33] "protfam"         "pccompound"      "pcsubstance"     "seqannot"       
+[37] "snp"             "sra"             "taxonomy"        "biocollections" 
+[41] "gtr"            </code></pre>
+</div>
+</div>
+<p>There is a set of functions with names starting <code>entrez_db_</code> that can be used to gather more information about each of these databases:</p>
+<p><strong>Functions that help you learn about NCBI databases</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function name</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>entrez_db_summary()</code></td>
+<td>Brief description of what the database is</td>
+</tr>
+<tr class="even">
+<td><code>entrez_db_searchable()</code></td>
+<td>Set of search terms that can used with this database</td>
+</tr>
+<tr class="odd">
+<td><code>entrez_db_links()</code></td>
+<td>Set of databases that might contain linked records</td>
+</tr>
+</tbody>
+</table>
+<p>As a bioinformatician, we want to find the first 150 records in the nucleotide database that match <strong><code>Severe acute respiratory syndrome coronavirus 2</code></strong>. How many records in the nucleotide sequence database match <strong><code>Severe acute respiratory syndrome coronavirus 2</code></strong>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="st">"Severe acute respiratory syndrome coronavirus 2"</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>covid_nuc <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db=</span><span class="st">"nuccore"</span>, <span class="at">term=</span>covid,<span class="at">retmax =</span> <span class="dv">30</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>covid_nuc<span class="sc">$</span>count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6820940</code></pre>
+</div>
+</div>
+<p>What’s the structure of the <code>covid_nuc</code> object?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(covid_nuc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 5
+ $ ids             : chr [1:30] "2470956531" "2470956518" "2470956505" "2470956492" ...
+ $ count           : int 6820940
+ $ retmax          : int 30
+ $ QueryTranslation: chr "\"Severe acute respiratory syndrome coronavirus 2\"[Organism] OR Severe acute respiratory syndrome coronavirus 2[All Fields]"
+ $ file            :Classes 'XMLInternalDocument', 'XMLAbstractDocument' &lt;externalptr&gt; 
+ - attr(*, "class")= chr [1:2] "esearch" "list"</code></pre>
+</div>
+</div>
+<p>How to get the <code>FASTA</code> sequence of the nucleotide sequences of the above <code>covid_nuc$ids</code> ?</p>
+<p>By providing a vector of IDs in <strong><code>covid_nuc$ids</code></strong>, the <strong><code>entrez_fetch()</code></strong> function retrieves the corresponding nucleotide sequences in FASTA format from the NCBI Nucleotide database.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>covid_n <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db=</span><span class="st">"nuccore"</span>, <span class="at">id=</span>covid_nuc<span class="sc">$</span>ids, <span class="at">rettype=</span><span class="st">"fasta"</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(covid_n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 910043</code></pre>
+</div>
+</div>
+<p>Congratulations, now you have a really huge character vector! Rather than printing all those thousands of bases we can take a peak at the top of the file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">strwrap</span>(<span class="fu">substr</span>(covid_n, <span class="dv">1</span>, <span class="dv">500</span>)), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&gt;OQ711802.1 Severe acute respiratory syndrome coronavirus 2 isolate
+SARS-CoV-2/human/JPN/HiroFS034/2022, complete genome
+AACCAACCAACTTTCGATCTCTTGTAGATCTGTTCTCTAAACGAACTTTAAAATCTGTGTGGCTGTCACT
+CGGCTGCATGCTTAGTGCACTCACGCAGTATAATTAATAACTAATTACTGTCGTTGACAGGACACGAGTA
+ACTCGTCTATCTTCTGCAGGCTGCTTACGGTTTCGTCCGTGTTGCAGCCGATCATCAGCACATCTAGGTT
+TTGTCCGGGTGTGACCGAAAGGTAAGATGGAGAGCCTTGTCCCTGGTTTCAACGAGAAAACACACGTCCA
+ACTCAGTTTGCCTGTTTTACAGGTTCGCGACGTGCTCGTACGTGGCTTTGGAGACTCCGTGGAGGAGGTC
+TTATCAGAGGCACGTCAACATCTT</code></pre>
+</div>
+</div>
+<p>If we wanted to use these sequences in some other application we could write them to file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(covid_n, <span class="st">"covid_nuc.fasta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alternatively, if you want to use them within an R session<br>
+we could write them to a temporary file then read that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(covid_n, temp)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>covid_n1 <span class="ot">&lt;-</span> <span class="fu">readDNAStringSet</span>(temp)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">names</span>(covid_n1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "OQ711802.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS034/2022, complete genome"
+[2] "OQ711801.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS033/2022, complete genome"
+[3] "OQ711800.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS032/2022, complete genome"
+[4] "OQ711799.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS027/2022, complete genome"
+[5] "OQ711798.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS024/2022, complete genome"
+[6] "OQ711797.1 Severe acute respiratory syndrome coronavirus 2 isolate SARS-CoV-2/human/JPN/HiroFS023/2022, complete genome"</code></pre>
+</div>
+</div>
+<section id="hands--on-exercice-for-nucleotide-sequences" class="level3">
+<h3 class="anchored" data-anchor-id="hands--on-exercice-for-nucleotide-sequences">Hands -on Exercice For NUcleotide Sequences</h3>
+<p>We want to get the different identifiers that are before the <code>\\s</code> and the word <code>Severe</code>. Which regular expression should we use?</p>
+<ol type="1">
+<li><p>Using <code>str_extract</code> and <code>^</code> and <code>.</code> and <code>{1,10}</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">names</span>(covid_n1), <span class="st">"^.{1,10}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "OQ711802.1" "OQ711801.1" "OQ711800.1" "OQ711799.1" "OQ711798.1"
+ [6] "OQ711797.1" "OQ711796.1" "OQ711795.1" "OQ711794.1" "OQ711793.1"
+[11] "OQ711792.1" "OQ711791.1" "OQ711790.1" "OQ711789.1" "OQ711788.1"
+[16] "OQ711735.1" "OQ711734.1" "OQ711733.1" "OQ711732.1" "OQ711731.1"
+[21] "OQ711730.1" "OQ711729.1" "OQ711728.1" "OQ711727.1" "OQ711726.1"
+[26] "OQ711725.1" "OQ711724.1" "OQ711723.1" "OQ711722.1" "OQ711721.1"</code></pre>
+</div>
+</div></li>
+</ol>
+<p>The <strong><code>^</code></strong> anchor specifies the start of the string. The <strong><code>.</code></strong> is a wildcard character that matches any character. The <strong><code>{1,10}</code></strong> quantifier specifies that the previous element (i.e., the <strong><code>.</code></strong>) can occur between 1 and 10 times, inclusive. In other words, this regular expression will match any string that is between 1 and 10 characters long.</p>
+<ol start="2" type="1">
+<li><p>Using <code>str_extract</code></p>
+<p>and <code>[:alpha:]</code> and <code>[:digit:]</code> and <code>[:punct:]</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="fu">names</span>(covid_n1), <span class="st">"[:alpha:]{2}+[:digit:]{6}+[:punct:]+[:digit:]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "OQ711802.1" "OQ711801.1" "OQ711800.1" "OQ711799.1" "OQ711798.1"
+ [6] "OQ711797.1" "OQ711796.1" "OQ711795.1" "OQ711794.1" "OQ711793.1"
+[11] "OQ711792.1" "OQ711791.1" "OQ711790.1" "OQ711789.1" "OQ711788.1"
+[16] "OQ711735.1" "OQ711734.1" "OQ711733.1" "OQ711732.1" "OQ711731.1"
+[21] "OQ711730.1" "OQ711729.1" "OQ711728.1" "OQ711727.1" "OQ711726.1"
+[26] "OQ711725.1" "OQ711724.1" "OQ711723.1" "OQ711722.1" "OQ711721.1"</code></pre>
+</div>
+</div></li>
+</ol>
+<p>This regular expression can be broken down as follows:</p>
+<ul>
+<li><p><strong><code>[:alpha:]{2}</code></strong>: Matches any two alphabetic characters.</p></li>
+<li><p><strong><code>+</code></strong>: The <strong><code>+</code></strong> sign means that the preceding pattern should be matched one or more times. In this case, it applies to the <strong><code>[:alpha:]{2}</code></strong> pattern.</p></li>
+<li><p><strong><code>[:digit:]{6}</code></strong>: Matches any six numeric characters.</p></li>
+<li><p><strong><code>+</code></strong>: Similar to the previous use, the <strong><code>+</code></strong> sign applies to the <strong><code>[:digit:]{6}</code></strong> pattern.</p></li>
+<li><p><strong><code>[:punct:]+</code></strong>: Matches one or more punctuation characters.</p></li>
+<li><p><strong><code>[:digit:]</code></strong>: Matches a single numeric character.</p></li>
+</ul>
+<p>Overall, this regular expression matches a string that contains two alphabetic characters, followed by six numeric characters, followed by one or more punctuation characters, and finally a single numeric character.</p>
+<ol start="3" type="1">
+<li>Using the <code>Positive Lookahead</code></li>
+</ol>
+<p>Lookarounds are helpful to reduce complicated regex expressions and make it easier to identify what we want to find in a string.</p>
+<p>There are two types of lookarounds: <code>lookaheads</code>and <code>lookbehinds</code>. In this solution we’ll be using the <code>Positive Lookahead</code> <code>(?=pattern)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(covid_n, <span class="st">".*(?=</span><span class="sc">\\</span><span class="st">sSevere)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "&gt;OQ711802.1"</code></pre>
+</div>
+</div>
+<p>This regular expression consists of two parts:</p>
+<ol type="1">
+<li><p><strong><code>.*</code></strong>: a greedy quantifier that matches any character (except for newline characters) zero or more times, as many times as possible.</p></li>
+<li><p><strong><code>(?=\\sSevere)</code></strong>: a positive lookahead that matches a space character followed by the word “Severe”, but does not include it in the match.</p></li>
+</ol>
+<p>Together, this regular expression matches any characters (except for newlines) that occur immediately before the phrase “Severe” preceded by a space character. The positive lookahead <strong><code>(?=\\sSevere)</code></strong> ensures that the match ends right before the space character that precedes “Severe”, so that “Severe” itself is not included in the match.</p>
+</section>
+<section id="hands--on-exercice-for-amino-acid-sequences" class="level3">
+<h3 class="anchored" data-anchor-id="hands--on-exercice-for-amino-acid-sequences">Hands -on Exercice For Amino-Acid Sequences</h3>
+<p>Let’s get the data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>covid_prot <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db=</span><span class="st">"protein"</span>, <span class="at">term=</span>covid,<span class="at">retmax =</span> <span class="dv">30</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>covid_p <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db=</span><span class="st">"protein"</span>, <span class="at">id=</span>covid_prot<span class="sc">$</span>ids, <span class="at">rettype=</span><span class="st">"fasta"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(covid_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 31873</code></pre>
+</div>
+</div>
+<p>Same as before</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">strwrap</span>(<span class="fu">substr</span>(covid_p, <span class="dv">1</span>, <span class="dv">500</span>)), <span class="at">sep=</span><span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&gt;WEX55198.1 ORF10 protein [Severe acute respiratory syndrome
+coronavirus 2] MGYINVFAFPFTIYSLLLCRMNSRNYIAQVDVVNFNFT
+
+&gt;WEX55197.1 nucleocapsid phosphoprotein [Severe acute respiratory
+syndrome coronavirus 2]
+MSDNGPQNQRNALRITFGGPSDSTGSNQNGGARSKQRRPQGLPNNTASWFTALTQHGKEDLKFPRGQGVP
+INTNSSPDDQIGYYRRATRRIRGGDGKMKDLSPRWYFYYLGTGPEAGLPYGANKDGIIWVATEGALNTPK
+DHIGTRNPANNAAIVLQLPQGTTLPKGFYAEGSRGGSQASSRSSSRSRNSSRNSTPGSSKRTSPARMAGN
+GGDAALALLLLDRLNQLESKMSGKGQQQQGQTVTKKSAAEASKKPRQKRTATKAYNVTQAFGRRGPEQTQ
+GNFGDQELIR</code></pre>
+</div>
+</div>
+<p>And let’s read it as an <code>AAStringSet</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(covid_p, temp)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>covid_p1 <span class="ot">&lt;-</span> <span class="fu">readAAStringSet</span>(temp)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">names</span>(covid_p1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "WEX55198.1 ORF10 protein [Severe acute respiratory syndrome coronavirus 2]"              
+[2] "WEX55197.1 nucleocapsid phosphoprotein [Severe acute respiratory syndrome coronavirus 2]"
+[3] "WEX55196.1 ORF8 protein [Severe acute respiratory syndrome coronavirus 2]"               
+[4] "WEX55195.1 ORF7b [Severe acute respiratory syndrome coronavirus 2]"                      
+[5] "WEX55194.1 ORF7a protein [Severe acute respiratory syndrome coronavirus 2]"              
+[6] "WEX55193.1 ORF6 protein [Severe acute respiratory syndrome coronavirus 2]"               </code></pre>
+</div>
+</div>
+<p>Following the Example above extract the identifiers example <code>WEX55198.1</code>using a regex ??????</p>
+</section>
+</section>
+<section id="available-regex-generators" class="level2">
+<h2 class="anchored" data-anchor-id="available-regex-generators">Available regex generators</h2>
+<p>https://regex101.com/</p>
+<p>https://regex-generator.olafneumann.org/</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>http://perso.ens-lyon.fr/lise.vaudor/strings-et-expressions-regulieres/</p>
+<p>https://debuggingdata.com/post/r/regular-expressions-look-arounds/</p>
+<p>https://cran.r-project.org/web/packages/rentrez/vignettes/rentrez_tutorial.html</p>
+<p>https://www3.ntu.edu.sg/home/ehchua/programming/howto/Regexe.html</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
